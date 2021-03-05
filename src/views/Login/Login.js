@@ -1,34 +1,20 @@
 import React, { Component } from 'react';
 import shortid from 'shortid';
 import Button from '@material-ui/core/Button';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import s from './Register.module.scss';
+import InputIcon from '@material-ui/icons/Input';
+import s from './Login.module.scss';
 
-class Register extends Component {
-  inputNameId = shortid.generate();
+class LogIn extends Component {
   inputNumberId = shortid.generate();
   inputPasswordId = shortid.generate();
 
   render() {
-    const { inputNameId } = this.inputNameId;
     const { inputNumberId } = this.inputNumberId;
     const { inputPasswordId } = this.inputPasswordId;
     return (
       <>
-        <h2 className={s.RegisterTitle}>
-          To register, fill in all the fields below
-        </h2>
-        <form className={s.RegisterForm}>
-          <label htmlFor={inputNameId} className={s.labelTitle}>
-            Name:
-          </label>
-          <input
-            id={inputNameId}
-            type="text"
-            name="name"
-            onChange={this.handleChange}
-            className={s.input}
-          />
+        <h2 className={s.LoginTitle}>To Login, fill in all the fields below</h2>
+        <form className={s.LoginForm}>
           <label htmlFor={inputNumberId} className={s.labelTitle}>
             Email:
           </label>
@@ -54,9 +40,9 @@ class Register extends Component {
             type="submit"
             variant="contained"
             color="primary"
-            endIcon={<PersonAddIcon />}
+            endIcon={<InputIcon />}
           >
-            Register now
+            Log in
           </Button>
         </form>
       </>
@@ -64,4 +50,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default LogIn;

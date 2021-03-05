@@ -9,6 +9,7 @@ import Contacts from './components/Contacts/Contacts';
 // import { routes } from './routes';
 import HomePage from './views/HomePage/HomePage';
 import Register from './views/Register/Register';
+import LogIn from './views/Login/Login';
 
 class App extends Component {
   render() {
@@ -29,6 +30,8 @@ class App extends Component {
           <Switch>
             <Route exact path={'/'} component={HomePage} />
             <Route path={'/register'} component={Register} />
+            <Route path={'/login'} component={LogIn} />
+            <Route path={'/contacts'} component={Contacts} />
           </Switch>
           <ToastContainer />
         </Container>
