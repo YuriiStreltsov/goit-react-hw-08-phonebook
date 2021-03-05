@@ -16,7 +16,7 @@ h6 {
 }
 
 body {
-  background-color: rgba(233, 233, 233, 0.775);
+  background-image: url('https://cdn.pixabay.com/photo/2013/06/07/09/53/notepad-117597_960_720.png');
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -63,7 +63,7 @@ button {
   color: #108397;
 }
 
-.titleApp-appear {
+/* .titleApp-appear {
   opacity: 0;
   transform: translateX(-100%);
 }
@@ -72,7 +72,7 @@ button {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 500ms, transform 500ms linear;
-}
+} */
 
 .ContactsList {
   position: relative;
