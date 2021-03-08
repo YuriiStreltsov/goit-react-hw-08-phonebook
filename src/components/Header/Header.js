@@ -10,7 +10,9 @@ function Header({ isAuthenticated, userName, onLogout }) {
     <header className={s.Header}>
       <div className={s.wrapper}>
         <CSSTransition in={true} timeout={500} classNames={s} appear={true}>
-          <h1 className={s.titleApp}>Phonebook</h1>
+          <a href="/">
+            <h1 className={s.titleApp}>Phonebook</h1>
+          </a>
         </CSSTransition>
         <p className={s.greeting}>
           Welcome
