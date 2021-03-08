@@ -38,7 +38,7 @@ class App extends Component {
             <PrivateRoute
               path={routes.contacts}
               component={Contacts}
-              redirectTo={routes.login}
+              redirectTo={routes.home}
             />
           </Switch>
           <ToastContainer />
