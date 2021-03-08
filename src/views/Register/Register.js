@@ -5,13 +5,25 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import s from './Register.module.scss';
 
 class Register extends Component {
+  state = {
+    name: '',
+    email: '',
+    password: '',
+  };
+
   inputNameId = shortid.generate();
-  inputNumberId = shortid.generate();
+  inputEmailId = shortid.generate();
   inputPasswordId = shortid.generate();
 
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  };
+
   render() {
+    const { name, email, password } = this.state;
     const { inputNameId } = this.inputNameId;
-    const { inputNumberId } = this.inputNumberId;
+    const { inputEmailId } = this.inputEmailId;
     const { inputPasswordId } = this.inputPasswordId;
     return (
       <>
@@ -26,16 +38,18 @@ class Register extends Component {
             id={inputNameId}
             type="text"
             name="name"
+            value={name}
             onChange={this.handleChange}
             className={s.input}
           />
-          <label htmlFor={inputNumberId} className={s.labelTitle}>
+          <label htmlFor={inputEmailId} className={s.labelTitle}>
             Email:
           </label>
           <input
-            id={inputNumberId}
+            id={inputEmailId}
             type="email"
-            name="number"
+            name="email"
+            value={email}
             onChange={this.handleChange}
             className={s.input}
           />
@@ -44,8 +58,9 @@ class Register extends Component {
           </label>
           <input
             id={inputPasswordId}
-            type="email"
-            name="number"
+            type="password"
+            name="password"
+            value={password}
             onChange={this.handleChange}
             className={s.input}
           />

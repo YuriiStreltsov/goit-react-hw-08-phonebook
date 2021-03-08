@@ -1,8 +1,15 @@
 import React from 'react';
 import s from './HomePage.module.scss';
 import { CSSTransition } from 'react-transition-group';
+import { routes } from '../../routes';
 
-function HomePage() {
+function HomePage({ history }) {
+  console.dir(history);
+  const handleGoView = e => {
+    const { name } = e.target;
+    history.push(routes[name]);
+  };
+
   return (
     <>
       <CSSTransition in={true} timeout={500} classNames={s} appear={true}>
@@ -12,10 +19,20 @@ function HomePage() {
       </CSSTransition>
 
       <div className={s.HomePage__button__container}>
-        <button type="button" className={s.HomePage__button__register}>
+        <button
+          name="register"
+          type="button"
+          className={s.HomePage__button__register}
+          onClick={handleGoView}
+        >
           Registration
         </button>
-        <button type="button" className={s.HomePage__button__login}>
+        <button
+          name="login"
+          type="button"
+          className={s.HomePage__button__login}
+          onClick={handleGoView}
+        >
           LogIn
         </button>
       </div>
