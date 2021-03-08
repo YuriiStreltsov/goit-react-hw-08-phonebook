@@ -3,6 +3,8 @@ import shortid from 'shortid';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import s from './Register.module.scss';
+import { connect } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 
 class Register extends Component {
   state = {
@@ -20,6 +22,13 @@ class Register extends Component {
     this.setState({ [name]: value });
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+
+    this.props.onRegister(this.state);
+    this.setState({ name: '', email: '', password: '' });
+  };
+
   render() {
     const { name, email, password } = this.state;
     const { inputNameId } = this.inputNameId;
@@ -30,7 +39,7 @@ class Register extends Component {
         <h2 className={s.RegisterTitle}>
           To register, fill in all the fields below
         </h2>
-        <form className={s.RegisterForm}>
+        <form className={s.RegisterForm} onSubmit={this.onSubmit}>
           <label htmlFor={inputNameId} className={s.labelTitle}>
             Name:
           </label>
@@ -79,4 +88,8 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const mapDispatchToProps = {
+  onRegister: authOperations.register,
+};
+
+export default connect(null, mapDispatchToProps)(Register);

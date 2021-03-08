@@ -3,6 +3,9 @@ import shortid from 'shortid';
 import Button from '@material-ui/core/Button';
 import InputIcon from '@material-ui/icons/Input';
 import s from './Login.module.scss';
+import { connect } from 'react-redux';
+import { authOperations, authSelectors } from '../../redux/auth';
+import { routes } from '../../routes';
 
 class LogIn extends Component {
   state = {
@@ -13,9 +16,18 @@ class LogIn extends Component {
   inputEmailId = shortid.generate();
   inputPasswordId = shortid.generate();
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onLogin(this.state);
+    this.setState({ name: '', email: '', password: '' });
+  };
+
+  handleClick = () => {
+    this.props.history.push(routes.home);
   };
 
   render() {
@@ -24,8 +36,18 @@ class LogIn extends Component {
     const { email, password } = this.state;
     return (
       <>
+        <Button
+          style={{ marginBottom: '10px', width: 150 }}
+          type="submit"
+          variant="contained"
+          color="#777777"
+          endIcon={<InputIcon />}
+          onClick={this.handleClick}
+        >
+          Back Home
+        </Button>
         <h2 className={s.LoginTitle}>To Login, fill in all the fields below</h2>
-        <form className={s.LoginForm}>
+        <form className={s.LoginForm} onSubmit={this.onSubmit}>
           <label htmlFor={inputEmailId} className={s.labelTitle}>
             Email:
           </label>
@@ -62,5 +84,12 @@ class LogIn extends Component {
     );
   }
 }
+const mapStateToProp = state => ({
+  isAuthenticated: authSelectors.getIsAuthenticated(state),
+});
 
-export default LogIn;
+const mapDispatchToProps = {
+  onLogin: authOperations.login,
+};
+
+export default connect(mapStateToProp, mapDispatchToProps)(LogIn);

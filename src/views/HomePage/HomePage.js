@@ -4,7 +4,6 @@ import { CSSTransition } from 'react-transition-group';
 import { routes } from '../../routes';
 
 function HomePage({ history }) {
-  console.dir(history);
   const handleGoView = e => {
     const { name } = e.target;
     history.push(routes[name]);

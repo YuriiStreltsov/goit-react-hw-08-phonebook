@@ -60,39 +60,44 @@ class FormAddContact extends Component {
     const { inputNumberId } = this.inputNumberId;
 
     return (
-      <form className={s.PhonebookForm} onSubmit={this.handleSubmit}>
-        <label htmlFor={inputNameId} className={s.labelTitle}>
-          Name:
-        </label>
-        <input
-          id={inputNameId}
-          type="text"
-          name="name"
-          value={name}
-          onChange={this.handleChange}
-          className={s.input}
-        />
-        <label htmlFor={inputNumberId} className={s.labelTitle}>
-          Number:
-        </label>
-        <input
-          id={inputNumberId}
-          type="number"
-          name="number"
-          value={number}
-          onChange={this.handleChange}
-          className={s.input}
-        />
-        <Button
-          style={{ marginRight: 'auto', width: 200 }}
-          type="submit"
-          variant="contained"
-          color="primary"
-          endIcon={<AddIcon />}
-        >
-          Add contact
-        </Button>
-      </form>
+      <>
+        <p className={s.text}>
+          To add a contact, fill in the fields below and click the "ADD CONTACT"
+        </p>
+        <form className={s.PhonebookForm} onSubmit={this.handleSubmit}>
+          <label htmlFor={inputNameId} className={s.labelTitle}>
+            Name:
+          </label>
+          <input
+            id={inputNameId}
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+            className={s.input}
+          />
+          <label htmlFor={inputNumberId} className={s.labelTitle}>
+            Number:
+          </label>
+          <input
+            id={inputNumberId}
+            type="number"
+            name="number"
+            value={number}
+            onChange={this.handleChange}
+            className={s.input}
+          />
+          <Button
+            style={{ marginRight: 'auto', width: 200 }}
+            type="submit"
+            variant="contained"
+            color="primary"
+            endIcon={<AddIcon />}
+          >
+            Add contact
+          </Button>
+        </form>
+      </>
     );
   }
 }

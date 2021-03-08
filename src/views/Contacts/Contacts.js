@@ -4,6 +4,7 @@ import ContactsList from '../../components/ContactsList/ContactsList';
 import { connect } from 'react-redux';
 import selectors from '../../redux/contacts/contacts-selectors';
 import Header from '../../components/Header/Header';
+import FormAddContact from '../../components/FormAddContact/FormAddContact';
 
 class Contacts extends Component {
   render() {
@@ -11,6 +12,7 @@ class Contacts extends Component {
     return (
       <>
         <Header />
+        <FormAddContact />
         {totalItems > 1 && <Filter />}
         <ContactsList />
       </>

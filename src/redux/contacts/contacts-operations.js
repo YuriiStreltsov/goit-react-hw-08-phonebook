@@ -1,41 +1,39 @@
 import axios from 'axios';
-import {
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-} from './contacts-actions';
+import contactsActions from './contacts-actions';
 
-axios.defaults.baseURL = 'http://localhost:4040';
+const fetchContacts = () => async dispatch => {
+  dispatch(contactsActions.fetchContactsRequest());
 
-const fetchContacts = () => dispatch => {
-  dispatch(fetchContactsRequest());
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
-    .catch(error => dispatch(fetchContactsError(error)));
+  try {
+    const response = await axios.get('/contacts');
+
+    dispatch(contactsActions.fetchContactsSuccess(response.data));
+  } catch (error) {
+    dispatch(contactsActions.fetchContactsError(error.message));
+  }
 };
 
-const addContact = contact => dispatch => {
-  dispatch(addContactRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
+const addContact = contact => async dispatch => {
+  dispatch(contactsActions.addContactRequest());
+  try {
+    const response = await axios.post('/contacts', contact);
+
+    dispatch(contactsActions.addContactSuccess(response.data));
+  } catch (error) {
+    dispatch(contactsActions.addContactError(error.message));
+  }
 };
 
-const deleteContact = id => dispatch => {
-  dispatch(deleteContactRequest());
+const deleteContact = id => async dispatch => {
+  dispatch(contactsActions.deleteContactRequest());
 
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
+  try {
+    await axios.delete(`/contacts/${id}`);
+
+    dispatch(contactsActions.deleteContactSuccess(id));
+  } catch (error) {
+    dispatch(contactsActions.addContactError(error.message));
+  }
 };
 
 const operations = {

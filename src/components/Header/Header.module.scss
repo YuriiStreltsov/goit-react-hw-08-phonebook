@@ -1,9 +1,15 @@
 .Header {
   margin-bottom: 20px;
+
+  & .userName {
+    margin-left: 5px;
+    font-weight: 700;
+  }
 }
 
 .wrapper {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 35px;
 }
@@ -27,18 +33,17 @@
 
 .greeting {
   display: block;
-  margin-left: auto;
 }
 
 .button {
-  margin-left: 10px;
-  min-width: 50px;
+  min-width: 65px;
   height: 100%;
   border-radius: 5px;
   border: 1px solid #108397;
   background-color: #2c055f;
   color: #108397;
   transition: all 300ms ease;
+  font-weight: 700;
 
   &:hover {
     border: 1px solid #2c055f;
