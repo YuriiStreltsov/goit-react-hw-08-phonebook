@@ -6,6 +6,7 @@ import s from './Login.module.scss';
 import { connect } from 'react-redux';
 import { authOperations, authSelectors } from '../../redux/auth';
 import { routes } from '../../routes';
+import showNotify from '../../components/Notify/Notify';
 
 class LogIn extends Component {
   state = {
@@ -22,8 +23,12 @@ class LogIn extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    const { email, password } = this.state;
+    if (email.length === 0 || password.length === 0) {
+      return showNotify('', 'Fields cannot be empty');
+    }
     this.props.onLogin(this.state);
-    this.setState({ name: '', email: '', password: '' });
+    this.setState({ email: '', password: '' });
   };
 
   handleClick = () => {

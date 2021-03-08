@@ -7,8 +7,8 @@ const fade = cssTransition({
   exit: 'slide-out-right',
 });
 
-const notify = (name, text) => {
-  toast.error(`${name} ${text}`, {
+const notify = (param = '', text) => {
+  toast.error(` ${param} ${text}`, {
     transition: fade,
     autoClose: 2000,
     closeButton: false,

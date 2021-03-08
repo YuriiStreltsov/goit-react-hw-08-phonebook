@@ -29,7 +29,7 @@ class FormAddContact extends Component {
     e.preventDefault();
     const { name, number } = this.state;
     if (name.length === 0 || number.length === 0) {
-      return showNotify('Fields cannot be empty');
+      return showNotify('', 'Fields cannot be empty');
     }
     const contacts = this.props.items;
 
